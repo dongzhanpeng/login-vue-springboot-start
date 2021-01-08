@@ -1,21 +1,31 @@
-import Vue from 'vue' //引入 Vue
-import VueRouter from 'vue-router' //引入 Vue 路由
+import Vue from 'vue' //???? Vue
+import VueRouter from 'vue-router' //???? Vue 路??
 
-Vue.use(VueRouter); //安装插件
+Vue.use(VueRouter); //??????
 
 export const constantRouterMap = [
-    //配置默认的路径，默认显示登录页
+    //鐧诲綍鐣岄潰
     {path: '/', component: () => import('@/views/login')},
 
-    //配置登录成功页面，使用时需要使用 path 路径来实现跳转
+    //鐧诲綍鎴愬姛鐣岄潰
     {path: '/success', component: () => import('@/views/success')},
 
-    //配置登录失败页面，使用时需要使用 path 路径来实现跳转
-    {path: '/error', component: () => import('@/views/error'), hidden: true}
+    //鐧诲綍澶辫触鐣岄潰
+    {path: '/error', component: () => import('@/views/error'), hidden: true},
+
+    //蹇樿瀵嗙爜鐣岄潰
+    {path: '/forgetpassword', component: () => import('@/views/forgetpassword')},
+
+    //鐭俊鎵惧洖
+    {path: '/messagefind', component: () => import('@/views/messagefind')},
+
+    //娉ㄥ唽鐣岄潰
+    {path: '/register', component: () => import('@/views/register')},
+
+
 ]
 
 export default new VueRouter({
-    // mode: 'history', //后端支持可开
     scrollBehavior: () => ({y: 0}),
-    routes: constantRouterMap //指定路由列表
+    routes: constantRouterMap //???路???斜?
 })

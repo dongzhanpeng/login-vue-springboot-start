@@ -1,7 +1,6 @@
 <template>
     <div class="login-container">
-        <el-card class="login-form" :model="loginForm" :rules="loginRules" autocomplete="on" label-position="left"
-                 style="background: #ddeff7">
+        <el-card class="login-form" :model="loginForm" :rules="loginRules" autocomplete="on" label-position="left">
             <el-form
                     autocomplete="on"
                     :model="loginForm"
@@ -20,7 +19,7 @@
 
 
                 <div class="title-container">
-                    <h2 class="login-title color-main">{{ $t('message.dzplogin') }}</h2>
+                    <h2 class="login-title color-main" style="width: 287px">{{ $t('message.starrysky') }}</h2>
                     <lang-select class="set-language" style="
     color: gray;
     width: 15px;
@@ -90,10 +89,16 @@
                             style="width: 60%; text-align: center; font-size:x-small"
                             type="primary"
                             :loading="loading"
-                            @click.native.prevent="forgetPassword"
-                    >{{ $t('message.forgetpassword') }}
+                            @click.native.prevent="register"
+                    >{{ $t('message.register') }}
                     </el-button>
                 </el-form-item>
+                <router-link to="forgetpassword"
+                             style="text-align: center;
+                             font-size: medium;
+                             color: orangered;
+                             text-decoration: none;
+">{{ $t('message.forgetpassword') }}</router-link>
             </el-form>
         </el-card>
     </div>
@@ -102,6 +107,7 @@
 <script>
     import SvgIcon from '@/components/SvgIcon'
     import LangSelect from '@/components/LangSelect'
+    import { MessageBox } from "element-ui";
 
     export default {
         name: "login",
@@ -146,8 +152,11 @@
                     this.$i18n.locale = 'zh'
                 }
             },
-            forgetPassword() {
+            register() {
+                    this.$router.push({
+                        path: "/register",
 
+                    });
             },
             showPwd() {
                 if (this.passwordType === 'password') {
@@ -165,16 +174,14 @@
                             .then(response => {
                                 this.loading = false;
                                 let code = response.data.code;
+                                let message = response.data.message;
                                 if (code == 200) {
                                     this.$router.push({
                                         path: "/success",
                                         query: {data: response.data.data}
                                     });
                                 } else {
-                                    this.$router.push({
-                                        path: "/error",
-                                        query: {message: response.data.message}
-                                    });
+                                    MessageBox.alert(message,"登陆失败");
                                 }
                             })
                             .catch(() => {
@@ -224,7 +231,8 @@
     .login-container {
         min-height: 100%;
         width: 100%;
-        background-color: #bed6f5;
+        background: url("../image/homepage.jpg") no-repeat;
+        background-size: 100%;
         overflow: hidden;
         position: absolute;
         top: 0;
@@ -255,14 +263,18 @@
         }
 
         .login-form {
-            position: relative;
-            width: 310px;
+            position: absolute;
+            width: 380px;
             max-width: 100%;
-            padding: 30px 40px 0;
+            padding: 60px 45px 20px;
             margin: 0 auto;
             overflow: hidden;
-            top: 30px;
-            bottom: 20px;
+            top: 70px;
+            bottom: 60px;
+            left: 500px;
+            right: 500px;
+            opacity: 0.5;
+            background-color: #F2F99C;
         }
 
         /*.login-form-layout {*/
