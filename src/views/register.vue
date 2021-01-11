@@ -21,25 +21,25 @@
     right: 50px;
 "/>
           <h3>{{ $t('message.register') }}</h3>
-          <hr>
-          <el-form-item prop="username" :label="$t('message.us')">
-            <el-input v-model="userForm.username" :placeholder="$t('message.username')"></el-input>
-          </el-form-item>
-          <el-form-item prop="email" :label="$t('message.emailandiphonenumber')">
-            <el-input v-model="userForm.emailoriphonenumber"
-                      :placeholder="$t('message.inputemailandiphonenumber')"></el-input>
-          </el-form-item>
+            <hr>
+            <el-form-item prop="username" :label="$t('message.us')">
+              <el-input v-model="userForm.username" :placeholder="$t('message.username')"></el-input>
+            </el-form-item>
+            <el-form-item prop="email" :label="$t('message.emailandiphonenumber')">
+              <el-input v-model="userForm.emailoriphonenumber"
+                        :placeholder="$t('message.inputemailandiphonenumber')"></el-input>
+            </el-form-item>
 
 
-          <el-form-item prop="password" :label="$t('message.setpassword')">
-            <el-input
-                    :type="passwordType"
-                    :model="userForm"
-                    v-model="userForm.setpassword"
-                    autocomplete="on"
-                    :placeholder="$t('message.password')"></el-input>
-          </el-form-item>
-          <span class="show-pwd" @click="showPwd">
+            <el-form-item prop="password" :label="$t('message.setpassword')">
+              <el-input
+                      :type="passwordType"
+                      :model="userForm"
+                      v-model="userForm.setpassword"
+                      autocomplete="on"
+                      :placeholder="$t('message.password')"></el-input>
+            </el-form-item>
+            <span class="show-pwd" @click="showPwd">
                         <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" style="
     color: gray;
     width: 15px;
@@ -47,16 +47,16 @@
 "/>
                     </span>
 
-          <el-form-item prop="password"
-                        :label="$t('message.confirmpassword')">
-            <el-input
-                    :model="userForm"
-                    v-model="userForm.confirmpassword"
-                    :type="passwordType"
-                    autocomplete="on"
-                    :placeholder="$t('message.password')"></el-input>
-          </el-form-item>
-          <span class="show-pwd" @click="showPwd">
+            <el-form-item prop="password"
+                          :label="$t('message.confirmpassword')">
+              <el-input
+                      :model="userForm"
+                      v-model="userForm.confirmpassword"
+                      :type="passwordType"
+                      autocomplete="on"
+                      :placeholder="$t('message.password')"></el-input>
+            </el-form-item>
+            <span class="show-pwd" @click="showPwd">
                         <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" style="
     color: gray;
     width: 15px;
@@ -64,13 +64,13 @@
 "/>
                     </span>
 
-          <el-form-item>
-            <el-button type="primary" icon @click="doRegister()"
-                       style="background-color: #DAE2F5; color: gray;">
-              {{$t('message.registeraccount')}}
-            </el-button>
-          </el-form-item>
-        </el-form>
+            <el-form-item>
+              <el-button type="primary" icon @click="doRegister()"
+                         style="background-color: #DAE2F5; color: gray;">
+                {{$t('message.registeraccount')}}
+              </el-button>
+            </el-form-item>
+          </el-form>
       </el-row>
     </div>
   </div>
@@ -116,19 +116,22 @@
                         this.$msgbox.alert("密码不一致，请重新输入");
                     } else {
                         this.$store.dispatch("Register", this.userForm)
-                                .then(response => {
-                                    this.loading = false;
-                                    let code = response.data.code;
-                                    let message = response.data.message;
-                                    if (code == 200) {
-                                        MessageBox.alert(message, "注册成功");
-                                    } else {
-                                        MessageBox.alert(message, "注册失败");
-                                    }
-                                })
-                                .catch(() => {
-                                    this.loading = false;
-                                });
+                            .then(response => {
+                                this.loading = false;
+                                let code = response.data.code;
+                                let message = response.data.message;
+                                if (code == 200) {
+                                    MessageBox.alert(message, "注册成功");
+                                    this.$router.push({
+                                        path: "/",
+                                    });
+                                } else {
+                                    MessageBox.alert(message, "注册失败");
+                                }
+                            })
+                            .catch(() => {
+                                this.loading = false;
+                            });
                     }
                 }
             },
@@ -160,7 +163,7 @@
   }
 
   .login-wrap {
-    background: #CADD9B;
+    background: #E3EDCC;
     background-size: cover;
     width: 450px;
     height: 560px;

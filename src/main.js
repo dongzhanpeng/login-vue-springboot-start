@@ -5,6 +5,7 @@ import router from './router' //引入路由配置
 import i18n from './lang'
 import store from './store'   //引入VUEX状态管理
 import './icons' // icon
+import './views/login'
 Vue.config.productionTip = false
 
 new Vue({

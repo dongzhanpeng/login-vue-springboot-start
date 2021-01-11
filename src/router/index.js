@@ -25,6 +25,21 @@ export const constantRouterMap = [
 
 ]
 
+// constantRouterMap.beforeEach((to,from,next)=>{
+//     let isLogin = window.sessionStorage.getItem('userInfo');
+//     if (isLogin) {
+//         //如果用户信息存在则往下执行。
+//         next()
+//     } else {
+//         //如果用户token不存在则跳转到login页面
+//         if (to.path === '/') {
+//             next()
+//         } else {
+//             next('/')
+//         }
+//     }
+// })
+
 export default new VueRouter({
     scrollBehavior: () => ({y: 0}),
     routes: constantRouterMap //???·???б?
